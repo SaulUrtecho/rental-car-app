@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rental_car_app/ui/onboarding/intro/components/app_button.dart';
-import 'package:rental_car_app/ui/onboarding/intro/components/social_buttons.dart';
+import 'package:rental_car_app/ui/onboarding/components/app_button.dart';
+import 'package:rental_car_app/ui/onboarding/components/social_buttons.dart';
 import 'package:rental_car_app/ui/routes/routes.dart';
 
 class SignupScreen extends StatelessWidget {

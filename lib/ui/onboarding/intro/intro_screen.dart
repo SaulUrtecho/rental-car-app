@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rental_car_app/ui/onboarding/intro/components/app_button.dart';
+import 'package:rental_car_app/ui/onboarding/components/app_button.dart';
 import 'package:rental_car_app/ui/onboarding/intro/components/dot.dart';
 import 'package:rental_car_app/ui/onboarding/intro/components/slide_view.dart';
 import 'package:rental_car_app/ui/routes/routes.dart';
