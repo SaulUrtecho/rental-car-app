@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rental_car_app/ui/onboarding/intro/components/app_button.dart';
+import 'package:rental_car_app/ui/onboarding/intro/components/social_buttons.dart';
+import 'package:rental_car_app/ui/routes/routes.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -27,37 +30,75 @@ class SignupScreen extends StatelessWidget {
             const SizedBox(height: 30),
             const Text('Signup with following option', style: TextStyle(fontSize: 16)),
             const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Card(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  elevation: 4,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.175,
-                        vertical: MediaQuery.of(context).size.height * 0.02),
-                    child: Image.network(
-                      'https://clipground.com/images/png-google-logo.jpg',
-                      width: 30,
-                    ),
-                  ),
+            const SocialButtons(),
+            const SizedBox(height: 30),
+            const Text('Name', style: TextStyle(fontSize: 16)),
+            Card(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              elevation: 4,
+              child: const TextField(
+                cursorColor: Colors.grey,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person, color: Colors.grey),
+                  border: InputBorder.none,
+                  hintText: 'Enter your name',
                 ),
-                Card(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  elevation: 4,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.175,
-                        vertical: MediaQuery.of(context).size.height * 0.02),
-                    child: Image.network(
-                      'https://www.vhv.rs/file/max/19/199530_facebook-logo-png.png',
-                      width: 30,
-                    ),
-                  ),
-                )
+              ),
+            ),
+            // todo repeat the preview code
+            const SizedBox(height: 20),
+            const Text('Email Id', style: TextStyle(fontSize: 16)),
+            Card(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              elevation: 4,
+              child: const TextField(
+                cursorColor: Colors.grey,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.email, color: Colors.grey),
+                  border: InputBorder.none,
+                  hintText: 'Enter your email id',
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            const Text('Phone number', style: TextStyle(fontSize: 16)),
+            Card(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              elevation: 4,
+              child: const TextField(
+                keyboardType: TextInputType.number,
+                cursorColor: Colors.grey,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.phone, color: Colors.grey),
+                  border: InputBorder.none,
+                  hintText: 'Enter your phone number',
+                ),
+              ),
+            ),
+            const SizedBox(height: 60),
+            AppButton(
+              onTap: () {},
+
+              /// todo make the OTP verification
+              title: 'Sign Up',
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Already have an account? ",
+                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                ),
+                GestureDetector(
+                    onTap: () => Navigator.of(context).pushNamed(Routes.signin.name),
+                    child: const Text(
+                      'Signin',
+                      style: TextStyle(color: Colors.green, fontSize: 16),
+                    ))
               ],
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),

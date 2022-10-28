@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rental_car_app/ui/onboarding/intro/components/app_button.dart';
 import 'package:rental_car_app/ui/onboarding/intro/components/dot.dart';
 import 'package:rental_car_app/ui/onboarding/intro/components/slide_view.dart';
 import 'package:rental_car_app/ui/routes/routes.dart';
@@ -69,11 +70,11 @@ class _IntroScreenState extends State<IntroScreen> with TickerProviderStateMixin
             ],
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
                 const SizedBox(height: 40.0),
-                GestureDetector(
+                AppButton(
                   onTap: () {
                     if (_index < 2) {
                       _tabController.animateTo(_index + 1);
@@ -81,19 +82,7 @@ class _IntroScreenState extends State<IntroScreen> with TickerProviderStateMixin
                       Navigator.of(context).pushReplacementNamed(Routes.signin.name);
                     }
                   },
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.all(16.0),
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(25)),
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    width: double.infinity,
-                    child: Text(
-                      _index == 2 ? 'Get Started' : 'Next',
-                      style: const TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ),
+                  title: _index == 2 ? 'Get Started' : 'Next',
                 ),
                 Visibility(
                   maintainState: true,

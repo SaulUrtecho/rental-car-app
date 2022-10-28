@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:rental_car_app/ui/onboarding/intro/components/app_button.dart';
+import 'package:rental_car_app/ui/onboarding/intro/components/social_buttons.dart';
 import 'package:rental_car_app/ui/routes/routes.dart';
 
 class SigninScreen extends StatelessWidget {
@@ -21,37 +23,7 @@ class SigninScreen extends StatelessWidget {
             const SizedBox(height: 30),
             const Text('Signin with following option', style: TextStyle(fontSize: 16)),
             const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Card(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  elevation: 4,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.175,
-                        vertical: MediaQuery.of(context).size.height * 0.02),
-                    child: Image.network(
-                      'https://clipground.com/images/png-google-logo.jpg',
-                      width: 30,
-                    ),
-                  ),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  elevation: 4,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.175,
-                        vertical: MediaQuery.of(context).size.height * 0.02),
-                    child: Image.network(
-                      'https://www.vhv.rs/file/max/19/199530_facebook-logo-png.png',
-                      width: 30,
-                    ),
-                  ),
-                )
-              ],
-            ),
+            const SocialButtons(),
             const SizedBox(height: 50),
             const Text('Phone number', style: TextStyle(fontSize: 16)),
             Card(
@@ -68,22 +40,7 @@ class SigninScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 60),
-            GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(Routes.signup.name),
-              child: Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(12)),
-                  color: Theme.of(context).primaryColor,
-                ),
-                width: double.infinity,
-                child: const Text(
-                  'Sign In',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-              ),
-            ),
+            AppButton(onTap: () => Navigator.of(context).pushNamed(Routes.signup.name), title: 'Sign In'),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
