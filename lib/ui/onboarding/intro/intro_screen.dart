@@ -75,11 +75,11 @@ class _IntroScreenState extends State<IntroScreen> with TickerProviderStateMixin
               children: [
                 const SizedBox(height: 40.0),
                 AppButton(
-                  onTap: () {
+                  onTap: () async {
                     if (_index < 2) {
                       _tabController.animateTo(_index + 1);
                     } else {
-                      Navigator.of(context).pushReplacementNamed(Routes.signin.name);
+                      await Navigator.of(context).pushReplacementNamed(Routes.signin.name);
                     }
                   },
                   title: _index == 2 ? 'Get Started' : 'Next',

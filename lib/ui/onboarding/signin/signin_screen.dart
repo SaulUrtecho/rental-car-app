@@ -40,7 +40,7 @@ class SigninScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 60),
-            AppButton(onTap: () => Navigator.of(context).pushNamed(Routes.signup.name), title: 'Sign In'),
+            AppButton(onTap: () async => Navigator.of(context).pushNamed(Routes.signup.name), title: 'Sign In'),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +50,7 @@ class SigninScreen extends StatelessWidget {
                   style: TextStyle(color: Colors.grey, fontSize: 16),
                 ),
                 GestureDetector(
-                    onTap: () => Navigator.of(context).pushNamed(Routes.signup.name),
+                    onTap: () async => Navigator.of(context).pushNamed(Routes.signup.name),
                     child: const Text(
                       'Signup',
                       style: TextStyle(color: Colors.green, fontSize: 16),
