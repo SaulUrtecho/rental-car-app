@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:rental_car_app/ui/routes/routes.dart';
 
 class NumberBox extends StatelessWidget {
-  /// set a new parameter
   final bool isLast;
   final bool autoFocus;
   final ValueSetter<String> onChanged;
@@ -13,7 +12,7 @@ class NumberBox extends StatelessWidget {
 
   Future<void> showLoadingDialog(BuildContext context) {
     Timer(const Duration(seconds: 3), () {
-      Navigator.of(context).pushNamedAndRemoveUntil(Routes.intro.name, (route) => false); // todo make home view
+      Navigator.of(context).pushNamedAndRemoveUntil(Routes.appView.name, (route) => false); // todo make home view
     });
     return showDialog<void>(
       context: context,
@@ -24,7 +23,9 @@ class NumberBox extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(24.0)),
           ),
           content: Column(
+            /// modified the default size to min
             mainAxisSize: MainAxisSize.min,
+
             children: const [
               CircularProgressIndicator(
                 color: Colors.green,
