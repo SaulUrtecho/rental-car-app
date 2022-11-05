@@ -9,12 +9,15 @@ class HomeGrid extends StatelessWidget {
         CarDetails(name: 'Nissan', image: 'assets/img/car.png'),
         CarDetails(name: 'Audi', image: 'assets/img/car.png'),
         CarDetails(name: 'Toyota', image: 'assets/img/car.png'),
+        CarDetails(name: 'Afdfd', image: 'assets/img/car.png'),
+        CarDetails(name: 'Tsasa', image: 'assets/img/car.png'),
       ];
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         padding: const EdgeInsets.all(16),
         itemCount: cars.length,
