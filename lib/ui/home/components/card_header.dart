@@ -13,12 +13,12 @@ class CardHeader extends StatelessWidget {
         elevation: 0.5,
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(13.0))),
         clipBehavior: Clip.hardEdge,
-        child: Container(
+        child: SizedBox(
           height: 150,
           width: 500,
           child: Stack(
             children: [
-              Container(color: Colors.white),
+              const ColoredBox(color: Colors.white),
               ClipPath(
                 clipper: DiagonalClipPath(),
                 child: Container(

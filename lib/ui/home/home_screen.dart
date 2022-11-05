@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rental_car_app/ui/home/components/home_grid.dart';
 import 'package:rental_car_app/ui/home/components/home_header.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,6 +11,7 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: const [
           HomeHeader(),
+          HomeGrid(),
         ],
       ),
     );

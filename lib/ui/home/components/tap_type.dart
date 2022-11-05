@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rental_car_app/ui/design/app_colors.dart';
+import 'package:rental_car_app/ui/design/card_shadow.dart';
 
 class TapType extends StatelessWidget {
   final String text;
@@ -17,26 +18,14 @@ class TapType extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
-      child: GestureDetector(
+      child: CardShadow(
         onTap: onTap,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: isSelected == true ? AppColors.green : Colors.white,
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 1.0,
-                spreadRadius: 0.5,
-              )
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              text,
-              style: TextStyle(color: isSelected == true ? Colors.white : Colors.grey),
-            ),
+        backgroundColor: isSelected == true ? AppColors.green : Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            text,
+            style: TextStyle(color: isSelected == true ? Colors.white : Colors.grey),
           ),
         ),
       ),
