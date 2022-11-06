@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:rental_car_app/ui/home/components/tap_type.dart';
+import 'package:rental_car_app/ui/home_screens/home/components/tap_type.dart';
 
 class ListHorizontal extends StatefulWidget {
   const ListHorizontal({super.key});

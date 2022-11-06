@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rental_car_app/ui/design/app_colors.dart';
 import 'package:rental_car_app/ui/design/card_shadow.dart';
-import 'package:rental_car_app/ui/home/components/home_grid.dart';
+import 'package:rental_car_app/ui/home_screens/home/components/home_grid.dart';
 
 class CardGrid extends StatelessWidget {
   final CarDetails _carDetails;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rental_car_app/ui/design/app_colors.dart';
+import 'package:rental_car_app/ui/routes/routes.dart';
 
 class UbicationRow extends StatelessWidget {
   const UbicationRow({super.key});
@@ -24,7 +25,9 @@ class UbicationRow extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await Navigator.of(context).pushNamed(Routes.notifications.name);
+                },
                 icon: const Icon(
                   Icons.notifications,
                   color: AppColors.green,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rental_car_app/ui/design/app_colors.dart';
 import 'package:rental_car_app/ui/favourites/favorites_screen.dart';
-import 'package:rental_car_app/ui/home/home_screen.dart';
+import 'package:rental_car_app/ui/home_screens/home/home_screen.dart';
 import 'package:rental_car_app/ui/profile/profile_screen.dart';
 import 'package:rental_car_app/ui/search/search_screen.dart';
 
