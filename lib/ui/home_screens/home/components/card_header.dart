@@ -4,7 +4,6 @@ import 'package:rental_car_app/ui/design/app_colors.dart';
 class CardHeader extends StatelessWidget {
   const CardHeader({super.key});
 
-  /// todo cambiar todo esta mierda por el codigo del proyecto card_clip :P
   @override
   Widget build(BuildContext context) {
     return Padding(

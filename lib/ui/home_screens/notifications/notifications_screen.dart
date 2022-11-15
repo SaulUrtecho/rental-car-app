@@ -11,7 +11,7 @@ class NotificationsScreen extends StatefulWidget {
 class _NotificationsScreenState extends State<NotificationsScreen> {
   final List<NotificationData> notifications = [
     NotificationData(
-      description: 'Hurry Up! Dont sit at home',
+      description: "Hurry Up! Don't sit at home",
       descrition2: 'today. Best car rental deal today',
       timeStamp: '3 min ago',
       title: '40% off today',

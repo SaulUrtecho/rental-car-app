@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rental_car_app/data/remote/responses/car_model.dart';
 import 'package:rental_car_app/ui/design/app_colors.dart';
 import 'package:rental_car_app/ui/design/card_shadow.dart';
-import 'package:rental_car_app/ui/home_screens/home/components/home_grid.dart';
 
 class CardGrid extends StatelessWidget {
-  final CarDetails _carDetails;
-  const CardGrid(this._carDetails, {super.key});
+  final CarModel _car;
+  const CardGrid(this._car, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +19,19 @@ class CardGrid extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: SizedBox(
-                    width: 250,
-                    child: Image(
-                      image: AssetImage(_carDetails.image),
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.28,
+                          child: Image.network(
+                            _car.url,
+                          )),
+                    ],
                   ),
                 ),
                 Text(
-                  _carDetails.name,
+                  _car.model,
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -72,7 +76,7 @@ class CardGrid extends StatelessWidget {
                 ),
               ],
             ),
-            Align(alignment: Alignment.topRight, child: HeartIcon(_carDetails.name))
+            Align(alignment: Alignment.topRight, child: HeartIcon(_car.model))
           ],
         ));
   }
