@@ -111,6 +111,7 @@ class _IntroScreenState extends State<IntroScreen> with TickerProviderStateMixin
                   children: [
                     const SizedBox(height: 40.0),
                     BlocBuilder<IntroBloc, IntroState>(
+                      buildWhen: (previous, current) => previous.index != current.index,
                       builder: (context, state) {
                         return AppButton(
                           onTap: () => _introBloc.add(const OnBottomButtonTapped()),

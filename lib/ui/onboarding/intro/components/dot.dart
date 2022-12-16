@@ -11,6 +11,7 @@ class Dot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<IntroBloc, IntroState>(
+      buildWhen: (previous, current) => previous.index != current.index,
       builder: (context, state) {
         return index == state.index
             ? const DecoratedBox(
