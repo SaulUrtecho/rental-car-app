@@ -48,9 +48,7 @@ class _IntroScreenState extends State<IntroScreen> with TickerProviderStateMixin
     _tabController = TabController(length: slides.length, vsync: this);
     // we use the addListener method for add the event in the IntroBloc
     // this event require an index
-    _tabController.addListener(() {
-      _introBloc.add(OnIndexChanged(_tabController.index));
-    });
+    _tabController.addListener(() => _introBloc.add(OnIndexChanged(_tabController.index)));
   }
 
   @override
@@ -115,9 +113,7 @@ class _IntroScreenState extends State<IntroScreen> with TickerProviderStateMixin
                     BlocBuilder<IntroBloc, IntroState>(
                       builder: (context, state) {
                         return AppButton(
-                          onTap: () {
-                            _introBloc.add(const OnBottomButtonTapped());
-                          },
+                          onTap: () => _introBloc.add(const OnBottomButtonTapped()),
                           title: state.index == 2 ? 'Get Started' : 'Next',
                         );
                       },
