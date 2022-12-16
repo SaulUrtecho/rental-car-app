@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rental_car_app/ui/onboarding/components/app_button.dart';
+import 'package:rental_car_app/ui/onboarding/intro/bloc/commands.dart';
+import 'package:rental_car_app/ui/onboarding/intro/bloc/intro_bloc.dart';
 import 'package:rental_car_app/ui/onboarding/intro/components/dot.dart';
 import 'package:rental_car_app/ui/onboarding/intro/components/slide_view.dart';
 import 'package:rental_car_app/ui/routes/routes.dart';
@@ -11,10 +14,12 @@ class IntroScreen extends StatefulWidget {
   State<IntroScreen> createState() => _IntroScreenState();
 }
 
-// here is created the tapview
 class _IntroScreenState extends State<IntroScreen> with TickerProviderStateMixin {
+  // we declare a variable of TabController type
   late TabController _tabController;
-  int _index = 0;
+  // we declare a variable of IntroBloc type
+  late final IntroBloc _introBloc;
+
   // list of objects type SlideInfo
   final List<SlideInfo> slides = const [
     SlideInfo(
@@ -37,71 +42,110 @@ class _IntroScreenState extends State<IntroScreen> with TickerProviderStateMixin
   @override
   void initState() {
     super.initState();
+    // we initialize the IntroBloc variable with its bloc
+    _introBloc = IntroBloc();
+    // we initialize the tabController variable
     _tabController = TabController(length: slides.length, vsync: this);
+    // we use the addListener method for add the event in the IntroBloc
+    // this event require an index
     _tabController.addListener(() {
-      setState(() => _index = _tabController.index);
+      _introBloc.add(OnIndexChanged(_tabController.index));
     });
   }
 
   @override
+  void dispose() {
+    // clean the memory when object is used
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                SlideView(slideInfo: slides[0]),
-                SlideView(slideInfo: slides[1]),
-                SlideView(slideInfo: slides[2]),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return BlocProvider(
+      // we pass the bloc
+      create: (_) => _introBloc,
+      // since we won't be redrawing a widget, we use a listener
+      child: BlocListener<IntroBloc, IntroState>(
+        // listenWhen compare the previous state and current and return a bool
+        // to know whether or not the listener will be execute
+        listenWhen: (_, current) => current.command != null,
+        listener: (context, state) async {
+          final command = state.command;
+
+          if (command is AnimateTo) {
+            _tabController.animateTo(command.index);
+          }
+          if (command is NavigateTo) {
+            await Navigator.of(context).pushReplacementNamed(Routes.signin.name);
+          }
+
+          _introBloc.add(const ClearCommand());
+        },
+        child: Scaffold(
+          body: Column(
             children: [
-              Dot(index: 0, currentIndex: _index),
-              const SizedBox(width: 8),
-              Dot(index: 1, currentIndex: _index),
-              const SizedBox(width: 8),
-              Dot(index: 2, currentIndex: _index),
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    // each SlideView widget receive a slideInfo
+                    SlideView(slideInfo: slides[0]), // in index 0
+                    SlideView(slideInfo: slides[1]), // in index 1
+                    SlideView(slideInfo: slides[2]), // in index 2
+                  ],
+                ),
+              ),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Dot(index: 0),
+                  SizedBox(width: 8),
+                  Dot(index: 1),
+                  SizedBox(width: 8),
+                  Dot(index: 2),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 40.0),
+                    BlocBuilder<IntroBloc, IntroState>(
+                      builder: (context, state) {
+                        return AppButton(
+                          onTap: () {
+                            _introBloc.add(const OnBottomButtonTapped());
+                          },
+                          title: state.index == 2 ? 'Get Started' : 'Next',
+                        );
+                      },
+                    ),
+                    BlocBuilder<IntroBloc, IntroState>(
+                      builder: (context, state) {
+                        return Visibility(
+                          maintainState: true,
+                          maintainAnimation: true,
+                          maintainSize: true,
+                          visible: state.index < 2, // condition for hide or show the text
+                          child: TextButton(
+                            onPressed: () => _tabController.animateTo(2),
+                            child: const Text(
+                              'Skip',
+                              style: TextStyle(color: Colors.grey, fontSize: 14),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 40.0),
+                  ],
+                ),
+              )
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              children: [
-                const SizedBox(height: 40.0),
-                AppButton(
-                  onTap: () async {
-                    if (_index < 2) {
-                      _tabController.animateTo(_index + 1);
-                    } else {
-                      await Navigator.of(context).pushReplacementNamed(Routes.signin.name);
-                    }
-                  },
-                  title: _index == 2 ? 'Get Started' : 'Next',
-                ),
-                Visibility(
-                  maintainState: true,
-                  maintainAnimation: true,
-                  maintainSize: true,
-                  visible: _index < 2, // condition for hide or show the text
-                  child: TextButton(
-                    onPressed: () => _tabController.animateTo(2),
-                    child: const Text(
-                      'Skip',
-                      style: TextStyle(color: Colors.grey, fontSize: 14),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 40.0),
-              ],
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

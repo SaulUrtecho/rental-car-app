@@ -64,7 +64,7 @@ class NotificationIcon extends StatelessWidget {
         const Icon(
           Icons.notifications,
           color: Colors.white,
-        )
+        ),
       ],
     );
   }
