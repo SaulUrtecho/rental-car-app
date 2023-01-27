@@ -23,7 +23,7 @@ class HomeGrid extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   padding: const EdgeInsets.all(16),
-                  itemCount: state.cars!.length,
+                  itemCount: state.cars.length,
                   itemBuilder: (_, index) => CardGrid(state.cars[index]), // we pass the CarDetails obj
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,

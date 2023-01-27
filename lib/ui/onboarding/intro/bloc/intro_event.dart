@@ -13,6 +13,7 @@ class OnBottomButtonTapped extends IntroEvent {
 
 class ClearCommand extends IntroEvent {
   const ClearCommand();
+  // this override is for we can see the logs in the BlocObserver
   @override
   String toString() => 'ClearCommand';
 }
@@ -22,6 +23,7 @@ class ClearCommand extends IntroEvent {
 class OnIndexChanged extends IntroEvent {
   final int index;
   const OnIndexChanged(this.index);
+
   @override
   String toString() => 'OnIndexChanged';
 }
